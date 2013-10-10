@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="d3.parcoords.css">
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="d3.parcoords.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="underscore.js"></script>
+	</head>
+	<body>
+		<div id="example-progressive" class="parcoords" style="width:1000px;margin-left:-250px;height:270px;"></div>
+
+		<script id="progressive">
+			// linear color scale
+			// interact with this variable from a javascript console
+			var pc_progressive;
+
+			// load csv file and create the chart
+			d3.csv('heroAvgs.csv', function(data) {
+				var colorgen = d3.scale.category20();
+				var colors = {};
+				_(data).chain()
+					.pluck('group')
+					.uniq()
+					.each(function(d,i) {
+						colors[d] = colorgen(i);
+					});
+
+				var color = function(d) { return colors[d.group]; };
+
+				pc_progressive = d3.parcoords()("#example-progressive")
+					.data(data)
+					.color(color)
+					.alpha(0.4)
+					.margin({ top: 24, left: 150, bottom: 12, right: 0 })
+					.mode("queue")
+					.render()
+					.brushable()  // enable brushing
+					.interactive()  // command line mode
+
+				pc_progressive.svg.selectAll("text")
+					.style("font", "10px sans-serif");
+			});
+		</script>
+	</body>
+</html>
