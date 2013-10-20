@@ -1,10 +1,10 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="d3.parcoords.css">
+		<link rel="stylesheet" type="text/css" href="content/css/d3.parcoords.css">
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-		<script src="d3.parcoords.js"></script>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-		<script src="underscore.js"></script>
+		<script src="content/js/d3.parcoords.js"></script>
+		<link rel="stylesheet" type="text/css" href="content/css/viz1.css">
+		<script src="content/js/underscore.js"></script>
 	</head>
 	<body>
 		<div id="example-progressive" class="parcoords" style="width:1000px;margin-left:-250px;height:270px;"></div>
@@ -15,7 +15,7 @@
 			var pc_progressive;
 
 			// load csv file and create the chart
-			d3.csv('heroAvgs.csv', function(data) {
+			d3.csv('content/data/heroAvgs.csv', function(data) {
 				var colorgen = d3.scale.category20();
 				var colors = {};
 				_(data).chain()
