@@ -1,10 +1,8 @@
 body {
   font-size: 14px;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  margin: 50px auto 20px;
-  width: 720px;
   background: #fcfcfc;
-  line-height: 1.45em;
+  margin: 50px;
 }
 a {
   color: #555;
