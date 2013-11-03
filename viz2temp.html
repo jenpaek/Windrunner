@@ -11,20 +11,10 @@
 	<script type="text/javascript" src"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 	<script src="content/js/pieChart.js"></script>
 	<script src="content/js/bubbles.js"></script>
+    <script src="content/js/generateContent_viz2.js"></script>
 	<script>
 	 $(function() {
-		 var test = [];
-		 var rowNum = 0;
-	 d3.csv('content/data/heroAvgs.csv', function(data) {
-		data.forEach(function(d) {	
-			rowNum++;	
-			test.push(+d.numMatches);
-			
-		})
-		console.log("final: "+test);
-		//pieChart(0,100,9,6);
-		bubbles(rowNum, test);
-	 });
+		 generateContent_viz2();
 		
 	 });
 	</script>
@@ -37,7 +27,7 @@
 
 <body>
 	<p>
-		October 18, 2013 1:26AM
+		November 2, 2013
 	</p>
 	<p id='chart'>
 </body>
