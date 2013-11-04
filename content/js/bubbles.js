@@ -30,7 +30,7 @@ function bubbles(rowNum, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
    
     var width = screen.width,
     height = screen.height+200,
-    color = d3.scale.category10();
+    color = d3.scale.linear().domain([1,2]).range(['#2ca02c', '#d62728']);
 
     var pie = d3.layout.pie()
         .sort(null)
