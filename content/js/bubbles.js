@@ -1,7 +1,10 @@
-function bubbles(rowNum, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
+function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
 	var num = 0;
 	var idNum = 0;
-	console.log(graph); 
+	
+	var winColor = '#2ca02c';
+	var loseColor = '#d62728';
+	//console.log(graph); 
 			  
 	var graph = {
     	nodes: [], links: [], radius: []
@@ -29,8 +32,8 @@ function bubbles(rowNum, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
 	//console.log(viz2_gamesLost);
    
     var width = screen.width,
-    height = screen.height+200,
-    color = d3.scale.linear().domain([1,2]).range(['#2ca02c', '#d62728']);
+    height = screen.height+500,
+    color = d3.scale.linear().domain([1,2]).range([winColor, loseColor]);
 
     var pie = d3.layout.pie()
         .sort(null)
@@ -80,10 +83,28 @@ function bubbles(rowNum, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
         .attr("d", d3.svg.arc()
         .outerRadius(6)
         .innerRadius(0))
-        .attr("fill", function(d, i) { return color(d.data.group); });;
+        .attr("fill", function(d, i) { return color(d.data.group); })
+		.append("svg:title")
+   		.text(function(d) { 
 		
+		var nameString = this.parentNode.parentNode.id;
+		var replacementString = nameString.replace("node_","");
+		var winOrLoseRate = d3.select(this.parentNode).attr("fill");
+		if (winOrLoseRate == winColor )
+		{
+			rateString = "Win Rate: "+viz2_gamesWon[replacementString]+" games";
+		}
+		else if (winOrLoseRate == loseColor)
+		{
+			rateString = "Lose Rate: " +viz2_gamesLost[replacementString]+ " games";
+		}
+
+		return viz2_heroes[replacementString] + "\nTotal Games Played: " + viz2_gamesPlayed[replacementString] + "\n" + rateString;
+		});
+
+
 	for (i=0;i<viz2_gamesPlayed.length;i++){
-		console.log("#node_"+i)
+		//console.log("#node_"+i)
 		d3.select("#node_"+i).selectAll("path")
 		.attr("d", d3.svg.arc()
         .outerRadius(viz2_gamesPlayed[i])
