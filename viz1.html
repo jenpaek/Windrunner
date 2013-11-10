@@ -78,6 +78,10 @@
 			
 			// load csv file and create the chart
 			d3.csv('content/data/heroAvgs.csv', function(data) {
+				//Sorts data initially by hero groups
+				data.sort(function(a,b){
+					return a.group - b.group;
+				});
 				parcoords
 					.data(data)
 					.render()
@@ -93,7 +97,25 @@
 						"mouseover": function(d) { parcoords.highlight([d]) },
 						"mouseout": parcoords.unhighlight
 					});
-			
+				//Table sorting by clicking the headers of each column. 
+				d3.select("#grid .header").selectAll(".cell").on({
+					"click": function(d,i){
+						console.log("In here");
+						data.sort(function(a,b){
+							if(a.group==b.group){
+								return b[d] - a[d];
+							}else{
+								return a.group-b.group;
+							}
+						});
+						d3.select("#grid").datum(data).call(grid).selectAll(".row")
+						.on({
+							"mouseover": function(d) { parcoords.highlight([d]) },
+							"mouseout": parcoords.unhighlight
+						});;
+					}
+				})
+
 				// update data table on brush event
 				parcoords.on("brush", function(d) {
 					d3.select("#grid")
