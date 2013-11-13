@@ -44,9 +44,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .innerRadius(0);
 		*/
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#fragment-2").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+		.attr("id", "all");
 
     var force = d3.layout.force()
         .charge(-350)
@@ -67,7 +68,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .enter().append("g")
         .attr("class", "node");
 		
-	d3.select("svg").attr("id", "all");
+	//d3.select("body").select("svg").attr("id", "all");
+	//d3.select(".link").parentNode.attr("id", "all");
 	var childrenNodes = d3.select("#all").selectAll("g")
 		.attr("id", function (d){   
            return "node_"+idNum++;            
