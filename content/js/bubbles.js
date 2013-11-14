@@ -2,8 +2,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	var num = 0;
 	var idNum = 0;
 	
-	var winColor = '#2ca02c';
-	var loseColor = '#d62728';
+	var winColor = '#00b441';
+	var loseColor = '#000000';
 	//console.log(graph); 
 			  
 	var graph = {
@@ -32,7 +32,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	//console.log(viz2_gamesLost);
    
     var width = screen.width,
-    height = screen.height+500,
+    height = screen.height+200,
     color = d3.scale.linear().domain([1,2]).range([winColor, loseColor]);
 
     var pie = d3.layout.pie()

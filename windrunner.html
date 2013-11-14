@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="/content/css/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css" />
@@ -49,8 +49,8 @@
 <body class="bodyWrapper">
     <div class="headerWrapper">
    		<span><a href="http://dotabuff.com/matches/ti3"><img src="content/images/logo.png" height="60px" style="margin-top: 15px;"></a></span>				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="line-height: 50px;"><a href="http://blog.dota2.com/?l=english" class="headerLinks">Official Blog</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="line-height: 50px;"><a href="http://dotabuff.com/" class="headerLinks">Statistics</a></span>
+        <span style="line-height: 50px;"><a href="http://blog.dota2.com/?l=english" class="headerLinks headerLinkColor">OFFICIAL BLOG</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="line-height: 50px;"><a href="http://dotabuff.com/" class="headerLinks headerLinkColor">STATISTICS</a></span>
     </div>
 <div style="margin: 50px">
 <div class="transbackground">
@@ -60,11 +60,13 @@
 <div id="tabs" class="chartBodyWrapper">
   <ul>
     <li><a href="#fragment-1">Parallel Coordinates</a></li>
-    <li><a href="#fragment-2">Bubble Chart</a></li>
+    <li><a href="#fragment-2">Win / Lose Rate</a></li>
   </ul>
-  <div id="fragment-1" style="margin: auto auto;">
-    <div id="example" class="parcoords" style="width:1000px; height:200px;"></div>
+  <div id="fragment-1" style="margin: auto auto;" class="fragment1background">
+  	<div style="width:1000px; margin: 0 auto;">
+    <div id="example" class="parcoords fragment1SVG"></div>
     <div id="grid" style="width:1000px; height: auto;"></div>
+    </div>
     <script id="brushing">// quantitative color scale
       var blue_to_brown = d3.scale.linear()
         .domain([9, 50])
@@ -131,7 +133,7 @@
         });
       });
     </script>  </div>
-  <div id="fragment-2" style="background-color: white; height:auto;">
+  <div id="fragment-2" style="height:auto; margin:auto;" class="fragment2background">
     <p id='chart'>
   </div>
 </div>

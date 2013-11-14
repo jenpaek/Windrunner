@@ -4,10 +4,10 @@ body {
   background: #fcfcfc;
   margin: 50px;
 }
-a {
+viz1Link a {
   color: #555;
 }
-a:hover {
+viz1Link a:hover {
   color: #000;
 }
 ul {

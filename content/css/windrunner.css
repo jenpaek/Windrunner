@@ -1,5 +1,5 @@
 html { 
-        background: url('http://www.wallpaperup.com/uploads/wallpapers/2012/09/21/15656/a067860eb7f79929e4d254701ce6c674.jpg') no-repeat center center fixed; 
+        background: url('http://wallpoper.com/images/00/26/91/91/minimalistic-dark_00269191.jpg') no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -26,15 +26,32 @@ html {
     display: table-cell;
 	overflow: hidden;
     white-space: nowrap;
-	font-size: 18px; 
+	font-size: 15px; 
 	text-decoration:none;
 }
 
-.headerLinks a:link {color:#928b89 !important;}      /* unvisited link */
-.headerLinks a:visited {color:#928b89;}  /* visited link */
-.headerLinks a:hover {color:#ffffff;}  /* mouse over link */
-.headerLinks a:active {color:#ffffff;}  /* selected link */ 
+.headerLinkColor:link {color:#928b89 !important;}      /* unvisited link */
+.headerLinkColor:visited {color:#928b89;}  /* visited link */
+.headerLinkColor:hover {color:#ffffff;}  /* mouse over link */
+.headerLinkColor:active {color:#ffffff;}  /* selected link */ 
 
 .chartBodyWrapper {
 	border: 1px solid black !important;
+	backgrround: red;
 }
+
+.fragment1background {
+	background: #e2e0df;
+}
+
+.fragment2background {
+	background: #e2e0df;
+}
+
+.fragment1SVG {
+	width:1000px; 
+	height:200px; 
+	background: white; 
+	padding: 5px; 
+}
+
