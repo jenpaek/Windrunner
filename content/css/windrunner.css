@@ -22,12 +22,10 @@ html {
 }
 
 .headerLinks {
-  	vertical-align: middle;
-    display: table-cell;
-	overflow: hidden;
     white-space: nowrap;
 	font-size: 15px; 
 	text-decoration:none;
+	margin-top: 10px;
 }
 
 .headerLinkColor:link {color:#928b89 !important;}      /* unvisited link */
