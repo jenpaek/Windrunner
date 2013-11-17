@@ -1,6 +1,6 @@
-function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost) {
+function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum) {
 	var num = 0;
-	var idNum = 0;
+	var idNum = namingNum;
 	
 	var winColor = '#00b441';
 	var loseColor = '#000000';
@@ -25,14 +25,18 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		});		  
 		
 	}
-	graph.links.push({ "source": 0, "target": 1, "length": 500, "width": 1 });
+	//console.log(viz2_gamesPlayed);
+	//console.log(viz2_gamesPlayed[0]);
+	var lengthofLink = viz2_gamesPlayed[0] * 3;
+	console.log(lengthofLink);
+	//graph.links.push({ "source": 0, "target": 1, "length": 500, "width": 1 });
 	//console.log(graph.radius);   
 	   
 	//console.log(viz2_gamesWon);
 	//console.log(viz2_gamesLost);
    
-    var width = screen.width,
-    height = screen.height+200,
+    var width = 500,
+    height = 500,
     color = d3.scale.linear().domain([1,2]).range([winColor, loseColor]);
 
     var pie = d3.layout.pie()
@@ -44,14 +48,15 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .innerRadius(0);
 		*/
 
-    var svg = d3.select("#fragment-2").append("svg")
+    var svg = d3.select("#fragment-2-charts").append("svg")
         .attr("width", width)
         .attr("height", height)
-		.attr("id", "all");
+		.attr("id", "all"+clusterNum)
+		.attr("style", "stroke: white; background-color:white;");
 
     var force = d3.layout.force()
-        .charge(-350)
-        .linkDistance(50)
+        .charge(-500)
+        .linkDistance(lengthofLink)
         .size([width, height]);
 
     force.nodes(graph.nodes)
@@ -70,7 +75,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		
 	//d3.select("body").select("svg").attr("id", "all");
 	//d3.select(".link").parentNode.attr("id", "all");
-	var childrenNodes = d3.select("#all").selectAll("g")
+	var childrenNodes = d3.select("#all"+clusterNum).selectAll("g")
 		.attr("id", function (d){   
            return "node_"+idNum++;            
         });
@@ -91,6 +96,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		
 		var nameString = this.parentNode.parentNode.id;
 		var replacementString = nameString.replace("node_","");
+		replacementString = replacementString - namingNum;
 		var winOrLoseRate = d3.select(this.parentNode).attr("fill");
 		if (winOrLoseRate == winColor )
 		{
@@ -107,7 +113,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 
 	for (i=0;i<viz2_gamesPlayed.length;i++){
 		//console.log("#node_"+i)
-		d3.select("#node_"+i).selectAll("path")
+		var newNamingNum = namingNum+i;
+		d3.select("#node_"+newNamingNum).selectAll("path")
 		.attr("d", d3.svg.arc()
         .outerRadius(viz2_gamesPlayed[i])
         .innerRadius(0));
