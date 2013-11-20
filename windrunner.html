@@ -27,9 +27,14 @@
   <script src="content/js/pieChart.js"></script>
   <script src="content/js/bubbles.js"></script>
     <script src="content/js/generateContent_viz2.js"></script>
+    <script src="content/js/viz2_content_byPopularity.js"></script>
+    <script src="content/js/viz2_contentManager.js"></script>
   <script>
    $(function() {
-     generateContent_viz2();
+	 popularity_exists = true;
+	 default_view = true;
+     //generateContent_viz2();
+	 viz2_contentManager();
     
    });
   </script>
@@ -135,13 +140,13 @@
         });
       });
     </script>  </div>
-  <div id="fragment-2" style="height:9250px; margin:auto;" class="fragment2background">
+  <div id="fragment-2" style="height:9290px; margin:auto;" class="fragment2background">
   	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding-top:10px; height:155px;">Win | Lose Rate ordered by the most played heroes for The International 3 Tournament.<br>Ordered by clusters of 5 from most played to least played. <br><br>
     <img src="content/images/viz2_key.png" />
     <img src="content/images/viz2_hoverInstructions.png" style="margin-left:30px;"/>
     </div>
     <p id='chart'></p>
-    <div style="width:1000px;margin: 0 auto;">
+    <div id="viz2_content_wrapper"style="width:1000px;margin: 0 auto;">
     <div style="margin-bottom: 10px;">
     <b>Filter View:</b> 
     <div class="dropdown" style="display:inline-block">
@@ -150,20 +155,21 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Popularity</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_popularity">Popularity</a></li>
     <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Carry</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Mid</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Offlane</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Jungler</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Support</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_type_carry">Type - Carry</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_type_mid">Type - Mid</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_type_offlane">Type - Offlane</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_type_jungler">Type - Jungler</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="filterby_type_support">Type - Support</a></li>
     
   </ul>
 </div>
 </div>
-
+	<div id="viz2_content">
     <div id="fragment-2-charts" style="width:500px; float: left;"></div>
     <div id="fragment-2-left-info" style="float: left; margin-left:20px;"></div>
+    </div>
     </div>
   </div>
 </div>

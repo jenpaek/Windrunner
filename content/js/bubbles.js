@@ -28,7 +28,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	//console.log(viz2_gamesPlayed);
 	//console.log(viz2_gamesPlayed[0]);
 	var lengthofLink = viz2_gamesPlayed[0] * 3;
-	console.log(lengthofLink);
+	//console.log(lengthofLink);
 	//graph.links.push({ "source": 0, "target": 1, "length": 500, "width": 1 });
 	//console.log(graph.radius);   
 	   

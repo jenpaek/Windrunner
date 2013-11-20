@@ -1,4 +1,4 @@
-  function generateContent_viz2() {
+  function generateContent_viz2_byPopularity() {
   viz2_gamesPlayed = [];
   viz2_gamesWon = [];
   viz2_gamesLost = [];
