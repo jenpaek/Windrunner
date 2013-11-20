@@ -1,4 +1,4 @@
-function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum) {
+function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum, ww, hh) {
 	var num = 0;
 	var idNum = namingNum;
 	
@@ -35,8 +35,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	//console.log(viz2_gamesWon);
 	//console.log(viz2_gamesLost);
    
-    var width = 500,
-    height = 500,
+    var width = ww,
+    height = hh,
     color = d3.scale.linear().domain([1,2]).range([winColor, loseColor]);
 
     var pie = d3.layout.pie()

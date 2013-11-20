@@ -55,10 +55,10 @@
 				 hero.push(ordered_hero[i]);
 			 }
 			 if (incrementclusercounter > 17){
-			 	bubbles(2, hero, total, won , lost, jen , incrementclusercounter);
+			 	bubbles(2, hero, total, won , lost, jen , incrementclusercounter, 500, 500);
 			 }
 			 else {
-			 	bubbles(5, hero, total, won , lost, jen , incrementclusercounter);
+			 	bubbles(5, hero, total, won , lost, jen , incrementclusercounter, 500, 500);
 			 }
 			 //console.log(total);
 			 total = [];
