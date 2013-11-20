@@ -136,33 +136,31 @@
       });
     </script>  </div>
   <div id="fragment-2" style="height:9250px; margin:auto;" class="fragment2background">
-  	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding-top:10px; height:180px;">Win | Lose Rate ordered by the most played heroes for The International 3 Tournament.<br>Ordered by clusters of 5 from most played to least played. <br><br>
-    <span style="float: left; position:absolute; font-size:15px; margin-left:300px;margin-top:10px"><b>Size</b><br> Number of <br>Games Played <br>by Hero</span>
-    <span style="float: left; position:absolute; font-size:15px; margin-left:490px;margin-top:40px"><b>Games Won</b></span>
-    <span style="float: left; position:absolute; font-size:15px; margin-left:670px;margin-top:40px"><b>Games Lost</b></span>
-    <span style="float: left; position:absolute; font-size:15px; margin-left:838px;margin-top:40px"><b>Total Games</b></span>
-    <span>
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-	  
-	  <circle cx="250" cy="45" r="44" stroke="#7c7c7b"
-	  stroke-width="2" fill="#a09f9e"/>
-	  
-	  <rect x="450" y="35" width="30" height="30"
-	  style="fill:rgb(0,180,65);stroke-width:1;stroke:rgb(0,0,0)"/>
-	  
-	  <rect x="630" y="35" width="30" height="30"
-	  style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(0,0,0)"/>
-	  
-	  <rect x="800" y="35" width="30" height="30"
-	  style="fill:rgb(174,62,45);stroke-width:1;stroke:rgb(0,0,0)"/>
-	</svg> 
-
-     </span>
-    <br>
+  	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding-top:10px; height:155px;">Win | Lose Rate ordered by the most played heroes for The International 3 Tournament.<br>Ordered by clusters of 5 from most played to least played. <br><br>
+    <img src="content/images/viz2_key.png" />
+    <img src="content/images/viz2_hoverInstructions.png" style="margin-left:30px;"/>
     </div>
     <p id='chart'></p>
     <div style="width:1000px;margin: 0 auto;">
+    <div style="margin-bottom: 10px;">
+    <b>Filter View:</b> 
+    <div class="dropdown" style="display:inline-block">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Filter By
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Popularity</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Carry</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Mid</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Offlane</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Jungler</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Type - Support</a></li>
     
+  </ul>
+</div>
+</div>
 
     <div id="fragment-2-charts" style="width:500px; float: left;"></div>
     <div id="fragment-2-left-info" style="float: left; margin-left:20px;"></div>
