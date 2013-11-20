@@ -1,5 +1,5 @@
 html { 
-        background: url('http://wallpoper.com/images/00/26/91/91/minimalistic-dark_00269191.jpg') no-repeat center center fixed; 
+        background: url('/content/images/background.jpg') no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

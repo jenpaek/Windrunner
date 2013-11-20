@@ -1,4 +1,5 @@
 function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum, ww, hh) {
+	
 	var num = 0;
 	var idNum = namingNum;
 	
@@ -100,23 +101,31 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		var winOrLoseRate = d3.select(this.parentNode).attr("fill");
 		if (winOrLoseRate == winColor )
 		{
-			rateString = "Win Rate: "+viz2_gamesWon[replacementString]+" games";
+			rateString = "Wins: "+viz2_gamesWon[replacementString]+" games";
+			percent_rateString = "Win Rate: " + Math.round((((viz2_gamesWon[replacementString])/(viz2_gamesPlayed[replacementString]))*100)) + "%";
 		}
 		else if (winOrLoseRate == loseColor)
 		{
-			rateString = "Lose Rate: " +viz2_gamesLost[replacementString]+ " games";
+			rateString = "Losses: " +viz2_gamesLost[replacementString]+ " games";
+			percent_rateString = "Lose Rate: " + Math.round((((viz2_gamesLost[replacementString])/(viz2_gamesPlayed[replacementString]))*100)) + "%";
 		}
 
-		return viz2_heroes[replacementString] + "\nTotal Games Played: " + viz2_gamesPlayed[replacementString] + "\n" + rateString;
+		return viz2_heroes[replacementString] + "\nTotal Games Played: " + viz2_gamesPlayed[replacementString] + "\n" + rateString + "\n" + percent_rateString;
 		});
 
 
 	for (i=0;i<viz2_gamesPlayed.length;i++){
+		if (viz2_gamesPlayed[i] < 5) {
+			radius_withMinimum  = 5;
+		}
+		else {
+			radius_withMinimum = viz2_gamesPlayed[i];
+		}
 		//console.log("#node_"+i)
 		var newNamingNum = namingNum+i;
 		d3.select("#node_"+newNamingNum).selectAll("path")
 		.attr("d", d3.svg.arc()
-        .outerRadius(viz2_gamesPlayed[i])
+        .outerRadius(radius_withMinimum)
         .innerRadius(0));
 	}
 		
