@@ -3,11 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>jQuery UI Tabs - Default functionality</title>
+  <title>Team DOTA</title>
   <link rel="stylesheet" href="content/css/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
   <link rel="stylesheet" type="text/css" href="content/css/windrunner.css" />
   <link rel="stylesheet" href="content/bootstrap/css/bootstrap.css">
   <script src="content/bootstrap/js/bootstrap.js"></script>
@@ -22,11 +21,10 @@
   <link rel="stylesheet" type="text/css" href="content/css/viz1.css">
   <script src="content/js/underscore.js"></script>
   <script src="content/js/divgrid.js"></script>
-  <link rel="stylesheet" type="text/css" href="content/css/styles.css">
   <script type="text/javascript" src"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-  <script src="content/js/pieChart.js"></script>
+  <!--<script src="content/js/pieChart.js"></script>-->
   <script src="content/js/bubbles.js"></script>
-    <script src="content/js/generateContent_viz2.js"></script>
+    <!--<script src="content/js/generateContent_viz2.js"></script>-->
     <script src="content/js/viz2_content_byPopularity.js"></script>
     <script src="content/js/viz2_contentManager.js"></script>
     <script src="content/js/viz2_content_byType.js"></script>
@@ -60,7 +58,7 @@
         <span style="margin-top:10px;"><a href="http://blog.dota2.com/?l=english" class="headerLinks headerLinkColor">OFFICIAL BLOG</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style=""><a href="http://dotabuff.com/" class="headerLinks headerLinkColor">STATISTICS</a></span>
     </div>
-<div style="margin: 50px">
+<div style="margin: 50px 25px; min-width:1100px">
 <div class="transbackground">
 <br><br>
 </div>
@@ -76,6 +74,7 @@
     <div id="grid" style="width:1000px; height: auto;"></div>
     </div>
     <script id="brushing">// quantitative color scale
+			
       var blue_to_brown = d3.scale.linear()
         .domain([9, 50])
         .range(["steelblue", "brown"])
@@ -87,9 +86,16 @@
         .color(color)
         .alpha(0.4);
       
-      // load csv file and create the chart
+			var isSelected = {};
+			var highlighted = [];
+			
+			// load csv file and create the chart
       d3.csv('content/data/heroAvgs.csv', function(data) {
-        //Sorts data initially by hero groups
+				for (var i = 0; i < data.length; i++) {
+					isSelected[data[i].hero] = false;
+				}
+				
+				//Sorts data initially by hero groups
         data.sort(function(a,b){
           return a.group - b.group;
         });
@@ -105,13 +111,32 @@
           .call(grid)
           .selectAll(".row")
           .on({
-            "mouseover": function(d) { parcoords.highlight([d]) },
-            "mouseout": parcoords.unhighlight
+            "mouseover": function(d) { 
+							highlighted.push(d);
+							parcoords.highlight(highlighted);
+							highlighted.pop();
+						},
+            "mouseout": function(d) { 
+							if(highlighted.length > 0) {
+								parcoords.highlight(highlighted);
+							} else {
+								parcoords.unhighlight();
+							}
+						},
+						"click": function(d) { 
+							isSelected[d.hero] = !isSelected[d.hero];
+							if (isSelected[d.hero]) {
+								highlighted.push(d);
+								$(this).css('background','#FFFF99');
+							} else {
+								highlighted.splice(highlighted.indexOf(d), 1);
+								$(this).css('background','');
+							}
+						}
           });
         //Table sorting by clicking the headers of each column. 
         d3.select("#grid .header").selectAll(".cell").on({
           "click": function(d,i){
-            console.log("In here");
             data.sort(function(a,b){
               if(a.group==b.group){
                 return b[d] - a[d];
@@ -119,25 +144,100 @@
                 return a.group-b.group;
               }
             });
-            d3.select("#grid").datum(data).call(grid).selectAll(".row")
+						
+						$('.row').css('background','');
+						setTimeout(function() {
+							var rows = $('.row');
+							for (var i = 0; i < rows.length; i++) {
+								var row = rows[i];
+								var hero = $($(row).find('div')[0]).text().trim();
+								//console.log(hero);
+								if (isSelected[hero]) {
+									$(row).css('background', '#FFFF99');
+								}
+							}
+						}, 500);
+						
+						d3.select("#grid").datum(data).call(grid).selectAll(".row")
             .on({
-              "mouseover": function(d) { parcoords.highlight([d]) },
-              "mouseout": parcoords.unhighlight
-            });;
+            "mouseover": function(d) { 
+							highlighted.push(d);
+							parcoords.highlight(highlighted);
+							highlighted.pop();
+						},
+            "mouseout": function(d) { 
+							if(highlighted.length > 0) {
+								parcoords.highlight(highlighted);
+							} else {
+								parcoords.unhighlight();
+							}
+						},
+						"click": function(d) { 
+							isSelected[d.hero] = !isSelected[d.hero];
+							if (isSelected[d.hero]) {
+								highlighted.push(d);
+								$(this).css('background','#FFFF99');
+							} else {
+								highlighted.splice(highlighted.indexOf(d), 1);
+								$(this).css('background','');
+							}
+						}
+          });
           }
         })
 
+				function rehighlight() {
+					console.log('rehighlighting');
+					var rows = $('.row');
+					for (var i = 0; i < rows.length; i++) {
+						var row = rows[i];
+						var hero = $($(row).find('div')[0]).text().trim();
+						//console.log(hero);
+						if (isSelected[hero]) {
+							$(row).css('background', '#FFFF99');
+						} else {
+							$(row).css('background', '');
+						}
+					}
+				}
       
         // update data table on brush event
         parcoords.on("brush", function(d) {
+					parcoords.unhighlight();
+					highlighted = [];
+					$('.row').css('background','');
+					for (var i = 0; i < data.length; i++) {
+						isSelected[data[i].hero] = false;
+					}
+					
           d3.select("#grid")
             .datum(d) //d.slice(0,10))
             .call(grid)
-            .selectAll(".row")
-            .on({
-              "mouseover": function(d) { parcoords.highlight([d]) },
-              "mouseout": parcoords.unhighlight
-            });
+						.selectAll(".row")
+						.on({
+							"mouseover": function(d) { 
+								highlighted.push(d);
+								parcoords.highlight(highlighted);
+								highlighted.pop();
+							},
+							"mouseout": function(d) { 
+								if(highlighted.length > 0) {
+									parcoords.highlight(highlighted);
+								} else {
+									parcoords.unhighlight();
+								}
+							},
+							"click": function(d) { 
+								isSelected[d.hero] = !isSelected[d.hero];
+								if (isSelected[d.hero]) {
+									highlighted.push(d);
+									$(this).css('background','#FFFF99');
+								} else {
+									highlighted.splice(highlighted.indexOf(d), 1);
+									$(this).css('background','');
+								}
+							}
+						});
         });
       });
     </script>  </div>
