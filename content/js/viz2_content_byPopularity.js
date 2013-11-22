@@ -56,10 +56,20 @@
 				 hero.push(ordered_hero[i]);
 			 }
 			 if (incrementclusercounter > 17){
-			 	bubbles(2, hero, total, won , lost, jen , incrementclusercounter, 500, 500);
+
+			 	bubbles(2, hero, total, won , lost, jen , incrementclusercounter, 500, 500, -500);
 			 }
 			 else {
-			 	bubbles(5, hero, total, won , lost, jen , incrementclusercounter, 500, 500);
+				 	if (incrementclusercounter == 1) {
+						clusterLinkDistance = -1300;		
+					}
+					else if (incrementclusercounter == 2) {
+						clusterLinkDistance = -1000;	
+					}
+					else {
+						clusterLinkDistance = -500;
+					}
+			 	bubbles(5, hero, total, won , lost, jen , incrementclusercounter, 500, 500, clusterLinkDistance);
 			 }
 			 //console.log(total);
 			 total = [];

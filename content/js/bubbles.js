@@ -1,4 +1,4 @@
-function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum, ww, hh) {
+function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gamesLost, namingNum, clusterNum, ww, hh, distanceB) {
 	
 	var num = 0;
 	var idNum = namingNum;
@@ -56,7 +56,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		.attr("style", "stroke: white; background-color:white;");
 
     var force = d3.layout.force()
-        .charge(-500)
+        .charge(distanceB)
         .linkDistance(lengthofLink)
         .size([width, height]);
 
@@ -115,13 +115,13 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 
 
 	for (i=0;i<viz2_gamesPlayed.length;i++){
-		if (viz2_gamesPlayed[i] < 5) {
-			radius_withMinimum  = 5;
+		if (viz2_gamesPlayed[i] < 8) {
+			radius_withMinimum  = 8;
 		}
 		else {
 			radius_withMinimum = viz2_gamesPlayed[i];
 		}
-		//console.log("#node_"+i)
+		//console.log("#node_"+i)   radius_withMinimum
 		var newNamingNum = namingNum+i;
 		d3.select("#node_"+newNamingNum).selectAll("path")
 		.attr("d", d3.svg.arc()
