@@ -17,7 +17,7 @@ ul {
 .dark {
   background: #222;
 }
-#example,
+#parcoordsViz,
 #example-axes,
 #example1,
 #example2,
@@ -26,6 +26,13 @@ ul {
 #example-progressive {
   height: 200px;
   margin: 12px 0;
+}
+#sortHelper {
+	font-size: small;
+	font-style: italic;
+}
+.header .cell {
+	cursor: pointer;
 }
 p {
   width: 560px;
@@ -56,3 +63,41 @@ h3 {
 input {
   font-size: 16px;
 }
+.red {
+	color: red;
+}
+.blue {
+	color: blue;
+}
+.green {
+	color: green;
+}
+.yellow {
+	color: yellow;
+}
+.purple {
+	color: purple;
+}
+#groupBreakdown {
+	font-size: 14px;
+	margin: 10px auto;
+	width: 200px;
+	text-align: left;
+}
+#viz1Helper {
+	font-size: 14px;
+	margin-top:10px;
+	text-align: left;
+	width: 500px;
+}
+
+/* data table styles */
+#grid { height: 198px; }
+.row, .header { clear: left; font-size: 12px; line-height: 18px; height: 18px; margin-left:0px;}
+.row:nth-child(odd) { background: rgba(0,0,0,0.05); }
+.header { font-weight: bold; }
+.cell { float: left; overflow: hidden; white-space: nowrap; width: 75px; height: 18px; }
+.col-0 { width: 100px; }
+.ui-widget-content {
+	border: 1px solid #FFFFFF;
+	}

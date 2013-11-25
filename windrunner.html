@@ -37,20 +37,6 @@
     
    });
   </script>
-
-    
-  <style>
-    /* data table styles */
-    #grid { height: 198px; }
-    .row, .header { clear: left; font-size: 12px; line-height: 18px; height: 18px; }
-    .row:nth-child(odd) { background: rgba(0,0,0,0.05); }
-    .header { font-weight: bold; }
-    .cell { float: left; overflow: hidden; white-space: nowrap; width: 75px; height: 18px; }
-    .col-0 { width: 100px; }
-    .ui-widget-content {
-      border: 1px solid #FFFFFF;
-      }
-  </style>
 </head>
 <body class="bodyWrapper">
     <div class="headerWrapper">
@@ -69,9 +55,29 @@
     <li><a href="#fragment-2">Win | Lose Rate</a></li>
   </ul>
   <div id="fragment-1" style="margin: auto auto;" class="fragment1background">
-  	<div style="width:1000px; margin: 0 auto;">
-    <div id="example" class="parcoords fragment1SVG"></div>
-    <div id="grid" style="width:1000px; height: auto;"></div>
+  	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding:10px; height:155px;">Hero Statistics for The International 3 Tournament. Ordered by Group.<br>
+			<div style="float:left; width:50%;">
+				<div id="groupBreakdown">
+					<span style="font-size:14px; font-weight:bold">Group Breakdown</span><br>
+					<span class="red">Red</span> - Carry<br>
+					<span class="blue">Blue</span> - Mid<br>
+					<span class="green">Green</span> - Offlane<br>
+					<span class="yellow">Yellow</span> - Farming Support<br>
+					<span class="purple">Purple</span> - Hard Support<br>
+				</div>
+			</div>
+			<div style="float:right; width:50%;">
+				<div id="viz1Helper">
+					<span style="font-size:14px; font-weight:bold">Visualization Tips</span><br>
+					<img src="content/images/crosshair.png" style="width:30px;"/>Filter results by dragging the crosshair on a column.<br>
+					&nbsp;&nbsp;&nbsp;- Click on the column to clear the filter.
+				</div>
+			</div>
+    </div>
+    <div style="width:1000px; margin: 0 auto;">
+			<div id="parcoordsViz" class="parcoords fragment1SVG"></div>
+			<span id="sortHelper">Click on a heading to sort by that column.</span>
+			<div id="grid" style="width:1000px; height: auto;"></div>
     </div>
     <script id="brushing">// quantitative color scale
 			
@@ -82,7 +88,7 @@
       
       var color = function(d) { return blue_to_brown(d['hero']); };
 
-      var parcoords = d3.parcoords()("#example")
+      var parcoords = d3.parcoords()("#parcoordsViz")
         .color(color)
         .alpha(0.4);
       
