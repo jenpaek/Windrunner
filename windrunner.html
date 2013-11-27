@@ -94,9 +94,11 @@
       
 			var isSelected = {};
 			var highlighted = [];
+			var shown = [];
 			
 			// load csv file and create the chart
       d3.csv('content/data/heroAvgs.csv', function(data) {
+				shown = data;
 				for (var i = 0; i < data.length; i++) {
 					isSelected[data[i].hero] = false;
 				}
@@ -209,6 +211,7 @@
       
         // update data table on brush event
         parcoords.on("brush", function(d) {
+					shown = d;
 					parcoords.unhighlight();
 					highlighted = [];
 					$('.row').css('background','');
