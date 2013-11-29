@@ -58,12 +58,12 @@
   	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding:10px; height:155px;">Hero Statistics for The International 3 Tournament. Ordered by Group.<br>
 			<div style="float:left; width:50%;">
 				<div id="groupBreakdown">
-					<span style="font-size:14px; font-weight:bold">Group Breakdown</span><br>
-					<span class="red">Red</span> - Carry<br>
-					<span class="blue">Blue</span> - Mid<br>
-					<span class="green">Green</span> - Offlane<br>
-					<span class="yellow">Yellow</span> - Farming Support<br>
-					<span class="purple">Purple</span> - Hard Support<br>
+					<span style="font-size:14px; font-weight:bold">Groups</span><br>
+					1. Carry (<span class="red">Red</span>)<br>
+					2. Mid (<span class="blue">Blue</span>)<br>
+					3. Offlane (<span class="green">Green</span>)<br>
+					4. Farming Support (<span class="orange">Orange</span>)<br>
+					5. Hard Support (<span class="purple">Purple</span>)<br>
 				</div>
 			</div>
 			<div style="float:right; width:50%;">
@@ -86,11 +86,23 @@
         .range(["steelblue", "brown"])
         .interpolate(d3.interpolateLab);
       
-      var color = function(d) { return blue_to_brown(d['hero']); };
+      var color = function(d) { return blue_to_brown(d['group']); };
+			var mycolor = function(d) {
+				var color = ''; //default to black
+				switch(d['group']) {
+					case '1': color = 'red'; break;
+					case '2': color = 'blue'; break;
+					case '3': color = 'green'; break;
+					case '4': color = 'orangered'; break;
+					case '5': color = 'purple'; break;
+					default: color = black;
+				}
+				return color;
+			}
 
       var parcoords = d3.parcoords()("#parcoordsViz")
-        .color(color)
-        .alpha(0.4);
+        .color(mycolor);
+        //.alpha(0.4);
       
 			var isSelected = {};
 			var highlighted = [];

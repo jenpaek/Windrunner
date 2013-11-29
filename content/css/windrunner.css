@@ -7,7 +7,7 @@ html {
 }
 
 .transbackground {
-	background: url('content/images/trans.png') repeat;
+	background: url('/content/images/trans.png') repeat;
 }
 
 .bodyWrapper {
@@ -22,7 +22,7 @@ html {
 }
 
 .headerLinks {
-    white-space: nowrap;
+  white-space: nowrap;
 	font-size: 15px; 
 	text-decoration:none;
 	margin-top: 10px;

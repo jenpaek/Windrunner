@@ -72,8 +72,8 @@ input {
 .green {
 	color: green;
 }
-.yellow {
-	color: yellow;
+.orange {
+	color: orangered;
 }
 .purple {
 	color: purple;
@@ -81,7 +81,7 @@ input {
 #groupBreakdown {
 	font-size: 14px;
 	margin: 10px auto;
-	width: 200px;
+	width: 210px;
 	text-align: left;
 }
 #viz1Helper {
