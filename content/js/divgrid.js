@@ -1,5 +1,6 @@
 d3.divgrid = function(config) {
   var columns = [];
+  var roles = ["Carry","Mid","Offlane","Farming Support","Hard Support"];
 
   var dg = function(selection) {
     if (columns.length == 0) columns = d3.keys(selection.data()[0][0]);
@@ -7,7 +8,7 @@ d3.divgrid = function(config) {
     // header
     selection.selectAll(".header")
         .data([true])
-      .enter().append("div")
+      .enter().insert("div","#accordion")
         .attr("class", "header")
 
     var header = selection.select(".header")
@@ -22,15 +23,21 @@ d3.divgrid = function(config) {
       .text(function(d) { return d; });
 
     header.exit().remove();
-
-    // rows
-    var rows = selection.selectAll(".row")
-        .data(function(d) { return d; })
-
-    rows.enter().append("div")
+    for(var j = 1; j < 6; j++){
+      var rows = selection.select(".group" + j).selectAll(".row")
+        .data(function(d) { 
+          var dat = [];
+          for(var i = 0; i < d.length;i++){
+            if(d[i].group==j){
+              dat.push(d[i]);
+            }
+          }
+          return dat; })
+        rows.enter().append("div")
         .attr("class", "row")
 
     rows.exit().remove();
+    }
 
     var cells = selection.selectAll(".row").selectAll(".cell")
         .data(function(d) { return columns.map(function(col){return d[col];}) })
@@ -43,7 +50,7 @@ d3.divgrid = function(config) {
     cells.exit().remove();
 
     selection.selectAll(".cell")
-      .text(function(d) { return d; });
+      .text(function(d) { return d; }).style({'color':'black','width':'68px'});
 
     return dg;
   };

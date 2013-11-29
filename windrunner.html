@@ -37,6 +37,11 @@
     
    });
   </script>
+  <style>
+  	#grid .ui-widget-content{
+  	background-color:rgb(226, 224, 223);
+  }
+  </style>
 </head>
 <body class="bodyWrapper">
     <div class="headerWrapper">
@@ -48,6 +53,7 @@
 <div class="transbackground">
 <br><br>
 </div>
+
 
 <div id="tabs" class="chartBodyWrapper">
   <ul>
@@ -77,7 +83,20 @@
     <div style="width:1000px; margin: 0 auto;">
 			<div id="parcoordsViz" class="parcoords fragment1SVG"></div>
 			<span id="sortHelper">Click on a heading to sort by that column.</span>
-			<div id="grid" style="width:1000px; height: auto;"></div>
+			<div id="grid" style="width:1000px; height: auto;">
+				<div id="accordion" style="background-color:#FFFFFF">
+		          <h3>Carry</h3>
+		          <div class="group1"></div>
+		          <h3>Mid</h3>
+		          <div class="group2"></div>
+		          <h3>Offlane</h3>
+		          <div class="group3"></div>
+		          <h3>Farming Support</h3>
+		          <div class="group4"></div>
+		          <h3>Hard Support</h3>
+		          <div class="group5"></div>
+		        </div>
+			</div>
     </div>
     <script id="brushing">// quantitative color scale
 			
@@ -259,6 +278,9 @@
 								}
 							}
 						});
+        });
+		$(function() {
+          $( "#accordion" ).accordion({ heightStyle: "content" });
         });
       });
     </script>  </div>
