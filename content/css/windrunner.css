@@ -55,4 +55,8 @@ html {
 #grid .ui-widget-content{
   	background-color:rgb(226, 224, 223);
   }
+  
+.center_horizontal {
+	margin: 0 auto;
+  }
 

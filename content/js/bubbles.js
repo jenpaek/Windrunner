@@ -54,6 +54,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .attr("height", height)
 		.attr("id", "all"+clusterNum)
 		.attr("style", "stroke: white; background-color:white;");
+		//.attr("style", "background-color:white;");
+
 
     var force = d3.layout.force()
         .charge(distanceB)
@@ -73,6 +75,8 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .data(graph.nodes)
         .enter().append("g")
         .attr("class", "node");
+		//.attr("style", "stroke: white; background-color:white;");
+
 		
 	//d3.select("body").select("svg").attr("id", "all");
 	//d3.select(".link").parentNode.attr("id", "all");
@@ -83,6 +87,7 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	var arc = d3.svg.arc()
         .outerRadius(34)
         .innerRadius(0);
+
 		
     node.selectAll("path")
         .data(function(d, i) {return pie(d.proportions); })
@@ -109,9 +114,21 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 			rateString = "Losses: " +viz2_gamesLost[replacementString]+ " games";
 			percent_rateString = "Lose Rate: " + Math.round((((viz2_gamesLost[replacementString])/(viz2_gamesPlayed[replacementString]))*100)) + "%";
 		}
+		
+		for (j = 0; j < highlighted.length; j++){
+			if (highlighted[j].hero == viz2_heroes[replacementString]) {
+				//console.log(nameString);
+				d3.select("#"+nameString).attr("style", "stroke-width: 3px; stroke:#ff7800;");	
+				break;
+			}
+		}
 
 		return viz2_heroes[replacementString] + "\nTotal Games Played: " + viz2_gamesPlayed[replacementString] + "\n" + rateString + "\n" + percent_rateString;
 		});
+		
+    ///////////////////////////////////////
+
+	    ///////////////////////////////////////
 
 
 	for (i=0;i<viz2_gamesPlayed.length;i++){

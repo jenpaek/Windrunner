@@ -28,6 +28,7 @@
     <script src="content/js/viz2_content_byPopularity.js"></script>
     <script src="content/js/viz2_contentManager.js"></script>
     <script src="content/js/viz2_content_byType.js"></script>
+    <script src="content/js/viz2_content_bySelected.js"></script>
   <script>
    $(function() {
 	 popularity_exists = true;
@@ -290,15 +291,17 @@
     <img src="content/images/viz2_hoverInstructions.png" style="margin-left:30px;"/>
     </div>
     <p id='chart'></p>
-    <div id="viz2_content_wrapper"style="width:1000px;margin: 0 auto;">
+    <div id="viz2_content_wrapper"style="width:1000px;" class="center_horizontal">
     <div style="margin-bottom: 10px;">
     <b>Filter View:</b> 
     <div class="dropdown" style="display:inline-block">
   <button style="cursor:pointer" class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-    Filter By
+    <span id="dropdownText"></span>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  <li role="presentation"><a style="cursor:pointer" role="menuitem" tabindex="-1" id="filterby_heroStatistics">Selected Hero Statistics</a></li>
+    <li role="presentation" class="divider"></li>
     <li role="presentation"><a style="cursor:pointer" role="menuitem" tabindex="-1" id="filterby_popularity">Popularity</a></li>
     <li role="presentation" class="divider"></li>
     <li role="presentation"><a style="cursor:pointer" role="menuitem" tabindex="-1" id="filterby_type_carry">Type - Carry</a></li>

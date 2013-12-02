@@ -1,4 +1,6 @@
   function viz2_contentManager() {
+	  highlighted_nodes = [];
+	  highlighted_nodes_position = {};
 	  
 	  $('#ui-id-2').click(function(e) { 
 	  	if (default_view == true) {
@@ -6,9 +8,27 @@
 			generateContent_viz2_byPopularity();
 		    popularity_exists = true;
 			default_view = false;
+			$("#dropdownText").text("Popularity");
+		}
+		if (filterbystats_view == true) {
+			$('#viz2_content').remove();
+			popularity_exists = false;
+			viz2_byTypeWrapper();
+			viz2_content_bySelected();
 		}
 		  
 	  });
+	  
+	  $('#filterby_heroStatistics').click(function(e) { 
+	  		$('#viz2_content').remove();
+			popularity_exists = false;
+			viz2_byTypeWrapper();
+			viz2_content_bySelected();
+			filterbystats_view = true;
+			d3.select('#fragment-2').attr('style', 'height: 1800px');
+			$("#dropdownText").text("Selected Heor Statistics");
+			
+		});
 	  
 	  $('#filterby_popularity').click(function(e) { 
 	  		if (popularity_exists == false && default_view == false) {
@@ -16,6 +36,10 @@
 				generateContent_viz2_byPopularity();
 				popularity_exists = true;
 			}
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Popularity");
+			
 			
 		});
 		
@@ -24,8 +48,10 @@
 			popularity_exists = false;
 			viz2_byTypeWrapper();
 			viz2_content_byType(1);
-			d3.select('#fragment-2').attr('style', 'height: 2250px');
-			
+			d3.select('#fragment-2').attr('style', 'height: 1100px');
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Type - Carry");
 			
 		});
 	$('#filterby_type_mid').click(function(e) { 
@@ -33,31 +59,40 @@
 			popularity_exists = false;
 			viz2_byTypeWrapper();
 			viz2_content_byType(2);
-			d3.select('#fragment-2').attr('style', 'height: 2200px');
-			
+			d3.select('#fragment-2').attr('style', 'height: 1100px');
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Type - Mid");
 		});
 	$('#filterby_type_offlane').click(function(e) { 
 			$('#viz2_content').remove();
 			popularity_exists = false;
 			viz2_byTypeWrapper();
 			viz2_content_byType(3);
-			d3.select('#fragment-2').attr('style', 'height: 1750px');
-			
+			d3.select('#fragment-2').attr('style', 'height: 1100px');
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Type - Offlane");
 		});
 	$('#filterby_type_jungler').click(function(e) { 
 			$('#viz2_content').remove();
 			popularity_exists = false;
 			viz2_byTypeWrapper();
 			viz2_content_byType(4);
-			d3.select('#fragment-2').attr('style', 'height: 1300px');
-			
+			d3.select('#fragment-2').attr('style', 'height: 1100px');
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Type - Farming Support");
 		});
 	$('#filterby_type_support').click(function(e) { 
 			$('#viz2_content').remove();
 			popularity_exists = false;
 			viz2_byTypeWrapper();
 			viz2_content_byType(5);
-			d3.select('#fragment-2').attr('style', 'height: 2800px');
+			d3.select('#fragment-2').attr('style', 'height: 1100px');
+			filterbystats_view = false;
+			$("#viz2_content_wrapper").addClass("center_horizontal");
+			$("#dropdownText").text("Type - Hard Support");
 		});
 		
   }
