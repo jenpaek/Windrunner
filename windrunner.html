@@ -33,7 +33,11 @@
    $(function() {
 	 popularity_exists = true;
 	 default_view = true;
+	 movement = 0;
+	 current_state = 0;
      //generateContent_viz2();
+	 current_table_movement = 0;
+	 table_movement = 0;
 	 viz2_contentManager();
     
    });
@@ -164,6 +168,7 @@
 							}
 						},
 						"click": function(d) { 
+							movement++;
 							isSelected[d.hero] = !isSelected[d.hero];
 							if (isSelected[d.hero]) {
 								highlighted.push(d);
@@ -213,6 +218,7 @@
 							}
 						},
 						"click": function(d) { 
+							movement++;
 							isSelected[d.hero] = !isSelected[d.hero];
 							if (isSelected[d.hero]) {
 								highlighted.push(d);
@@ -243,6 +249,7 @@
       
         // update data table on brush event
         parcoords.on("brush", function(d) {
+			table_movement++;
 					shown = d;
 					parcoords.unhighlight();
 					highlighted = [];
@@ -269,6 +276,7 @@
 								}
 							},
 							"click": function(d) { 
+							movement++;
 								isSelected[d.hero] = !isSelected[d.hero];
 								if (isSelected[d.hero]) {
 									highlighted.push(d);
@@ -286,10 +294,12 @@
       });
     </script>  </div>
   <div id="fragment-2" style="height:9290px; margin:auto;" class="fragment2background">
-  	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding-top:10px; height:155px;">Win | Lose Rate ordered by the most played heroes for The International 3 Tournament.<br>Ordered by clusters of 5 from most played to least played. <br><br>
-    <img src="content/images/viz2_key.png" />
-    <img src="content/images/viz2_hoverInstructions.png" style="margin-left:30px;"/>
+  	<div style="font-size:18px; text-align:center; background-color: #bebebe; padding-top:10px; height:155px;"><span id="viz2_header"></span><br><br>
+    <span id="viz2_header_images">
+  
+    </span>
     </div>
+    
     <p id='chart'></p>
     <div id="viz2_content_wrapper"style="width:1000px;" class="center_horizontal">
     <div style="margin-bottom: 10px;">
