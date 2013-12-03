@@ -28,7 +28,7 @@ d3.divgrid = function(config) {
         .data(function(d) { 
           var dat = [];
           for(var i = 0; i < d.length;i++){
-            if(d[i].group==j){
+            if(d[i].Group==j){
               dat.push(d[i]);
             }
           }
