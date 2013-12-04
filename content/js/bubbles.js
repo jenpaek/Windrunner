@@ -13,7 +13,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 
 
 	for (i = 0 ; i< rowNum; i++){
-		
+		/*
+		Lines 21 through 25 are taken from an example available at http://stackoverflow.com/questions/14794055/place-pie-charts-on-nodes-of-force-directed-layout-graph-in-d3. 
+		The original code has been changed to fit the needs to the project pushing only 2 groups for each slice of the pie chart.
+		*/
 	  graph.nodes.push({ 
 			"proportions": [{"group": 1, "value": viz2_gamesWon[i]},
 							 {"group": 2, "value": viz2_gamesLost[i]}]
@@ -36,6 +39,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 	//console.log(viz2_gamesWon);
 	//console.log(viz2_gamesLost);
    
+    /*
+	Lines 46 through 48 are taken from an example available at http://stackoverflow.com/questions/14794055/place-pie-charts-on-nodes-of-force-directed-layout-graph-in-d3. 
+	The original code has been changed to fit the needs to the project to by dynamic and take in the two colors associated with win or lose
+	*/
     var width = ww,
     height = hh,
     color = d3.scale.linear().domain([1,2]).range([winColor, loseColor]);
@@ -48,7 +55,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .outerRadius(viz2_gamesPlayed[num++])
         .innerRadius(0);
 		*/
-
+	/*
+	Lines 62 through 64 are taken from an example available at http://stackoverflow.com/questions/14794055/place-pie-charts-on-nodes-of-force-directed-layout-graph-in-d3. 
+	The original code has been changed to fit the needs to the project in terms of making them dynamic and selecting a certain tage specific to only our project.
+	*/
     var svg = d3.select("#fragment-2-charts").append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -56,7 +66,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
 		.attr("style", "stroke: white; background-color:white;");
 		//.attr("style", "background-color:white;");
 
-
+	/*
+	Lines 73 through 90 are taken from an example available at http://stackoverflow.com/questions/14794055/place-pie-charts-on-nodes-of-force-directed-layout-graph-in-d3. 
+	The original code has been changed to fit the needs to the project to be dynamic, to fit the needs of which tags we used versus the example, and other such additional material has been added to the original source to make the code work better for the needs of our specific project. The original code was used as a basis to build on top of.  
+	*/
     var force = d3.layout.force()
         .charge(distanceB)
         .linkDistance(lengthofLink)
@@ -145,7 +158,10 @@ function bubbles(rowNum, viz2_heroes, viz2_gamesPlayed, viz2_gamesWon , viz2_gam
         .outerRadius(radius_withMinimum)
         .innerRadius(0));
 	}
-		
+	/*
+	Lines 165 through 173 are taken from an example available at http://stackoverflow.com/questions/14794055/place-pie-charts-on-nodes-of-force-directed-layout-graph-in-d3. 
+	This source code was taken to create the animation effect of the nodes when refreshed.
+	*/	
     force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
