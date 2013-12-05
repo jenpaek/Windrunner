@@ -4,6 +4,7 @@ d3.divgrid = function(config) {
 
   var dg = function(selection) {
     if (columns.length == 0) columns = d3.keys(selection.data()[0][0]);
+    console.log(selection.data()[0][0]);
 
     // header
     selection.selectAll(".header")
@@ -51,6 +52,10 @@ d3.divgrid = function(config) {
 
     selection.selectAll(".cell")
       .text(function(d) { return d; }).style({'color':'black','width':'68px'});
+    selection.selectAll(".row").selectAll(".col-0")
+      .text(function(d) { return d; }).style({'color':'black','width':'76px'});  
+    selection.selectAll(".header").selectAll(".col-0")
+      .text(function(d) { return d; }).style({'color':'black','width':'108px'}); 
 
     return dg;
   };
