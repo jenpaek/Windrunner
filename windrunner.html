@@ -113,7 +113,7 @@
       var color = function(d) { return blue_to_brown(d['group']); };
 			var mycolor = function(d) {
 				var color = ''; //default to black
-				switch(d['Group']) {
+				switch(d['group']) {
 					case '1': color = 'red'; break;
 					case '2': color = 'blue'; break;
 					case '3': color = 'green'; break;
@@ -141,7 +141,7 @@
 				
 				//Sorts data initially by hero groups
         data.sort(function(a,b){
-          return a.Group - b.Group;
+          return a.group - b.group;
         });
         parcoords
           .data(data)
@@ -169,8 +169,8 @@
 						},
 						"click": function(d) { 
 							movement++;
-							isSelected[d.Hero] = !isSelected[d.Hero];
-							if (isSelected[d.Hero]) {
+							isSelected[d.hero] = !isSelected[d.hero];
+							if (isSelected[d.hero]) {
 								highlighted.push(d);
 								$(this).css('background','#FFFF99');
 							} else {
@@ -183,10 +183,10 @@
         d3.select("#grid .header").selectAll(".cell").on({
           "click": function(d,i){
             data.sort(function(a,b){
-              if(a.Group==b.Group){
+              if(a.group==b.group){
                 return b[d] - a[d];
               }else{
-                return a.Group-b.Group;
+                return a.group-b.group;
               }
             });
 						
@@ -219,8 +219,8 @@
 						},
 						"click": function(d) { 
 							movement++;
-							isSelected[d.Hero] = !isSelected[d.Hero];
-							if (isSelected[d.Hero]) {
+							isSelected[d.hero] = !isSelected[d.hero];
+							if (isSelected[d.hero]) {
 								highlighted.push(d);
 								$(this).css('background','#FFFF99');
 							} else {
@@ -255,7 +255,7 @@
 					highlighted = [];
 					$('.row').css('background','');
 					for (var i = 0; i < data.length; i++) {
-						isSelected[data[i].Hero] = false;
+						isSelected[data[i].hero] = false;
 					}
 					
           d3.select("#grid")
@@ -277,8 +277,8 @@
 							},
 							"click": function(d) { 
 							movement++;
-								isSelected[d.Hero] = !isSelected[d.Hero];
-								if (isSelected[d.Hero]) {
+								isSelected[d.hero] = !isSelected[d.hero];
+								if (isSelected[d.hero]) {
 									highlighted.push(d);
 									$(this).css('background','#FFFF99');
 								} else {
