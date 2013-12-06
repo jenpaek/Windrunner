@@ -105,13 +105,11 @@
     </div>
     <script id="brushing">// quantitative color scale
 			
-      var blue_to_brown = d3.scale.linear()
-        .domain([9, 50])
-        .range(["steelblue", "brown"])
-        .interpolate(d3.interpolateLab);
-      
-      var color = function(d) { return blue_to_brown(d['group']); };
-			var mycolor = function(d) {
+			/* The basic outline of the below code was taken from http://syntagmatic.github.io/parallel-coordinates/examples/table.html. 
+			The exact parts that are copied are labeled below.  
+			Although we began with code from the site mentioned above, most of the code below is of our own creation. */
+
+      var mycolor = function(d) {
 				var color = ''; //default to black
 				switch(d['group']) {
 					case '1': color = 'red'; break;
@@ -126,14 +124,12 @@
 
       var parcoords = d3.parcoords()("#parcoordsViz")
         .color(mycolor);
-        //.alpha(0.4);
-      
+        
 			var isSelected = {};
 			var highlighted = [];
 			var shown = [];
 			
-			// load csv file and create the chart
-      d3.csv('content/data/heroAvgs.csv', function(data) {
+			d3.csv('content/data/heroAvgs.csv', function(data) {
 				shown = data;
 				for (var i = 0; i < data.length; i++) {
 					isSelected[data[i].hero] = false;
@@ -146,9 +142,10 @@
         parcoords
           .data(data)
           .render()
-          .brushable();  // enable brushing
+          .brushable(); 
       
-        // create data table, row hover highlighting
+				/* The basic outline of the d3.select("#grid") block was taken from http://syntagmatic.github.io/parallel-coordinates/examples/table.html.
+				However, we edited/added a significant amount of code to customize for our use. */
         var grid = d3.divgrid();
         d3.select("#grid")
           .datum(data) //data.slice(0,10))
@@ -247,8 +244,9 @@
 					}
 				}
       
-        // update data table on brush event
-        parcoords.on("brush", function(d) {
+      /* The basic outline of this on brush function was taken from http://syntagmatic.github.io/parallel-coordinates/examples/table.html.
+			However, we edited/added a significant amount of code to customize for our use. */
+      parcoords.on("brush", function(d) {
 			table_movement++;
 					shown = d;
 					parcoords.unhighlight();
